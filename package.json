@@ -1,6 +1,6 @@
 {
   "name": "crucial-form",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Form class with error handling for Laravel and Vue project",
   "main": "index.js",
   "scripts": {
