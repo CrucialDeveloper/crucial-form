@@ -27,10 +27,20 @@ var Form = function () {
     }
 
     _createClass(Form, [{
-        key: 'destroy',
-        value: function destroy(url) {
+        key: 'delete',
+        value: function _delete(url) {
             var form = this;
             axios.delete(url).then(function (response) {
+                window.location.reload();
+            }).catch(function (errors) {
+                form.errors.record(errors.response.data.errors);
+            });
+        }
+    }, {
+        key: 'patch',
+        value: function patch(url, data) {
+            var form = this;
+            axios.patch(url, data).then(function () {
                 window.location.reload();
             }).catch(function (errors) {
                 form.errors.record(errors.response.data.errors);

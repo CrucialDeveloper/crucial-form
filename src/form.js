@@ -9,10 +9,21 @@ export default class Form {
         this.errors = new Errors()
     }
 
-    destroy(url) {
+    delete(url) {
         let form = this
         axios.delete(url)
         .then(function(response) {
+            window.location.reload()
+        })
+        .catch(function(errors) {
+            form.errors.record(errors.response.data.errors)
+        })
+    }
+
+    patch(url, data) {
+        let form = this
+        axios.patch(url, data)
+        .then(function() {
             window.location.reload()
         })
         .catch(function(errors) {

@@ -1,6 +1,6 @@
 {
   "name": "crucial-form",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Form class with error handling for Laravel and Vue project",
   "main": "./dist/form.js",
   "scripts": {
