@@ -29,31 +29,49 @@ var Form = function () {
     _createClass(Form, [{
         key: 'delete',
         value: function _delete(url) {
+            var _this = this;
+
             var form = this;
-            axios.delete(url).then(function (response) {
-                window.location.reload();
-            }).catch(function (errors) {
-                form.errors.record(errors.response.data.errors);
+
+            return new Promise(function (resolve, reject) {
+                axios.delete(url, _this.data()).then(function (response) {
+                    resolve(response.data);
+                }).catch(function (error) {
+                    form.errors.record(errors.response.data.errors);
+                    reject(error.response.data);
+                });
             });
         }
     }, {
         key: 'patch',
         value: function patch(url, data) {
+            var _this2 = this;
+
             var form = this;
-            axios.patch(url, data).then(function () {
-                window.location.reload();
-            }).catch(function (errors) {
-                form.errors.record(errors.response.data.errors);
+
+            return new Promise(function (resolve, reject) {
+                axios.patch(url, _this2.data()).then(function (response) {
+                    resolve(response.data);
+                }).catch(function (error) {
+                    form.errors.record(errors.response.data.errors);
+                    reject(error.response.data);
+                });
             });
         }
     }, {
         key: 'post',
         value: function post(url) {
+            var _this3 = this;
+
             var form = this;
-            axios.post(url, this.data()).then(function (response) {
-                window.location.reload();
-            }).catch(function (errors) {
-                form.errors.record(errors.response.data.errors);
+
+            return new Promise(function (resolve, reject) {
+                axios.post(url, _this3.data()).then(function (response) {
+                    resolve(response.data);
+                }).catch(function (error) {
+                    form.errors.record(errors.response.data.errors);
+                    reject(error.response.data);
+                });
             });
         }
     }, {

@@ -10,36 +10,48 @@ export default class Form {
     }
 
     delete(url) {
-        let form = this
-        axios.delete(url)
-        .then(function(response) {
-            window.location.reload()
-        })
-        .catch(function(errors) {
-            form.errors.record(errors.response.data.errors)
-        })
+         let form = this
+
+        return new Promise((resolve, reject) => {
+            axios.delete(url, this.data())
+                .then(function(response){
+                    resolve(response.data);
+                })
+                .catch(function(error){
+                    form.errors.record(errors.response.data.errors)
+                    reject(error.response.data);
+                });
+        });
     }
 
     patch(url, data) {
-        let form = this
-        axios.patch(url, data)
-        .then(function() {
-            window.location.reload()
-        })
-        .catch(function(errors) {
-            form.errors.record(errors.response.data.errors)
-        })
+         let form = this
+
+        return new Promise((resolve, reject) => {
+            axios.patch(url, this.data())
+                .then(function(response){
+                    resolve(response.data);
+                })
+                .catch(function(error){
+                    form.errors.record(errors.response.data.errors)
+                    reject(error.response.data);
+                });
+        });
     }
 
     post(url) {
         let form = this
-        axios.post(url, this.data())
-        .then(function(response) {
-            window.location.reload()
-        })
-        .catch(function(errors) {
-            form.errors.record(errors.response.data.errors)
-        })
+
+        return new Promise((resolve, reject) => {
+            axios.post(url, this.data())
+                .then(function(response){
+                    resolve(response.data);
+                })
+                .catch(function(error){
+                    form.errors.record(errors.response.data.errors)
+                    reject(error.response.data);
+                });
+        });
     }
 
     data() {
